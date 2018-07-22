@@ -32,7 +32,8 @@ class AuthServiceProvider extends ServiceProvider
             'edit' => 'edit',
             'store' => 'store',
             'show-add-button' => 'showAddButton',
-            'update'=>'update'
+            'update'=>'update',
+            'show-change-button'=>'showChangeButton'
         ]);
     }
 }

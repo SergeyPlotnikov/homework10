@@ -8,15 +8,19 @@
         <th class="text-center" scope="col">Id</th>
         <th class="text-center" scope="col">Title</th>
         <th class="text-center" scope="col">Rate</th>
-        <th class="text-center" scope="col">Change rate</th>
+        @can('currencies.show-change-button')
+            <th class="text-center" scope="col">Change rate</th>
+        @endcan
         </thead>
         <tbody>
         <tr>
             <td class="text-center">{{$currency['id']}}</td>
             <td class="text-center">{{$currency['name']}}</td>
             <td class="text-center">{{$currency['rate']}}</td>
-            @component('change-button',['currencyId'=>$currency['id']])
-            @endcomponent
+            @can('currencies.show-change-button')
+                @component('change-button',['currencyId'=>$currency['id']])
+                @endcomponent
+            @endcan
         </tr>
         </tbody>
     </table>
