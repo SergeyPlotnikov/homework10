@@ -40,6 +40,11 @@ class CurrencyPolicy
         return $this->isAdmin($user);
     }
 
+    public function changeRate(User $user)
+    {
+        return $this->isAdmin($user);
+    }
+
     private function isAdmin(User $user)
     {
         return $user->is_admin;
