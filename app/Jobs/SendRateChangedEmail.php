@@ -35,6 +35,10 @@ class SendRateChangedEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->user)->send(new RateChanged($this->currency, $this->oldRate, $this->user->name));
+        $users = User::where('id', '<>', $this->user->id)->get();
+        foreach ($users as $user) {
+            Mail::to($user)->later(now()->addSeconds(10),
+                (new RateChanged($this->currency, $this->oldRate, $user->name))->onQueue('notification'));
+        }
     }
 }
