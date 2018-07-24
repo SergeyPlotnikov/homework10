@@ -68,7 +68,7 @@ class CurrenciesController extends Controller
         $currency = Currency::find($id);
         $currency->rate = $request->input('rate');
         $currency->save();
-        $users = $this->getUsers($request->userId);
+//        $users = $this->getUsers($request->userId);
 //          dd($users);
 //        die;
 
@@ -82,8 +82,8 @@ class CurrenciesController extends Controller
             'new_rate' => $request->input('rate')], 200);
     }
 
-    private function getUsers(int $id)
-    {
-        return DB::table('users')->where('id', '<>', $id)->get()->toArray();
-    }
+//    private function getUsers(int $id)
+//    {
+//        return DB::table('users')->where('id', '<>', $id)->get()->toArray();
+//    }
 }
