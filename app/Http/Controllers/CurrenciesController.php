@@ -67,8 +67,10 @@ class CurrenciesController extends Controller
         $currency->rate = $request->input('rate');
         $currency->save();
 
-        $user = User::find($request->userId);
-        SendRateChangedEmail::dispatch($user, $currency, $oldRate);
+        $users = User::where('is_admin', false)->get();
+        foreach ($users as $user) {
+            SendRateChangedEmail::dispatch($user, $currency, $oldRate);;
+        }
 
         return response()->json(['id' => $id, 'currency' => $currency->name, 'old_rate' => $oldRate,
             'new_rate' => $request->input('rate')], 200);
